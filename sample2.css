@@ -1,0 +1,181 @@
+/* ---------------------------------------------------
+   🗳️ ONLINE VOTING SYSTEM STYLE SHEET
+   Developed by: S. Karthik
+   Reg No: 312324205104
+   Department: IT
+   --------------------------------------------------- */
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #0072ff, #00c6ff);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #222;
+}
+
+/* ---------- Header ---------- */
+h1 {
+  color: #fff;
+  font-size: 40px;
+  margin-top: 30px;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+h2, h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* ---------- Container ---------- */
+.container {
+  background-color: #fff;
+  width: 90%;
+  max-width: 550px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  transition: 0.3s;
+}
+
+.container:hover {
+  transform: scale(1.02);
+}
+
+/* ---------- Input Fields ---------- */
+input[type="text"],
+input[type="password"],
+select {
+  width: 80%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #0072ff;
+  box-shadow: 0 0 8px rgba(0, 114, 255, 0.4);
+}
+
+/* ---------- Buttons ---------- */
+button {
+  width: 84%;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background-color: #388E3C;
+  box-shadow: 0 0 10px rgba(72, 239, 128, 0.7);
+}
+
+/* ---------- Logout / Admin Buttons ---------- */
+.logout-btn {
+  background-color: #e53935;
+}
+
+.logout-btn:hover {
+  background-color: #b71c1c;
+  box-shadow: 0 0 10px rgba(255, 82, 82, 0.7);
+}
+
+/* ---------- Candidate List ---------- */
+.candidate-list {
+  text-align: left;
+  padding-left: 50px;
+  margin-top: 15px;
+  font-size: 17px;
+  color: #333;
+}
+
+.candidate-list input {
+  margin-right: 10px;
+  accent-color: #0072ff;
+}
+
+/* ---------- Results Section ---------- */
+.result {
+  font-weight: 500;
+  font-size: 18px;
+  color: #333;
+  text-align: left;
+  padding: 10px 20px;
+}
+
+.result div {
+  margin: 10px 0;
+}
+
+.result strong {
+  color: #0072ff;
+}
+
+/* Progress bar background */
+.result div div {
+  background: #e0e0e0;
+  height: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* ---------- Hidden Elements ---------- */
+.hidden {
+  display: none;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  margin-top: 20px;
+  padding: 10px;
+  color: #fff;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+footer b {
+  color: #ffeb3b;
+}
+
+/* ---------- Time Display ---------- */
+#timeDisplay {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+/* ---------- Responsive Design ---------- */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 30px;
+  }
+
+  .container {
+    width: 95%;
+    padding: 20px;
+  }
+
+  input, button {
+    width: 90%;
+  }
+
+  .candidate-list {
+    padding-left: 25px;
+  }
+}
