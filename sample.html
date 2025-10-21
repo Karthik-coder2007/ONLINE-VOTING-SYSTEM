@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Voting System</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-top: 30px;
+    }
+
+    .container {
+      background: #fff;
+      width: 90%;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    input, select, button {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .result {
+      font-weight: bold;
+      color: #444;
+      font-size: 18px;
+    }
+
+    footer {
+      margin-top: 30px;
+      color: #222;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Online Voting System</h1>
+
+  <!-- Login Page -->
+  <div id="loginPage" class="container">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Enter username" required><br>
+    <input type="password" id="password" placeholder="Enter password" required><br>
+    <button onclick="login()">Login</button>
+  </div>
+
+  <!-- Voting Page -->
+  <div id="votingPage" class="container hidden">
+    <h2>Vote for Your Candidate</h2>
+    <select id="candidate">
+      <option value="">-- Select Candidate --</option>
+      <option value="Candidate A">Candidate A</option>
+      <option value="Candidate B">Candidate B</option>
+      <option value="Candidate C">Candidate C</option>
+    </select><br>
+    <button onclick="castVote()">Submit Vote</button>
+  </div>
+
+  <!-- Result Page -->
+  <div id="resultPage" class="container hidden">
+    <h2>Voting Results</h2>
+    <p id="resultText" class="result"></p>
+  </div>
+
+  <footer>
+    <p>Developed by <b>S. Karthik</b> | Reg No: <b>312324205104</b> | Dept: IT</p>
+  </footer>
+
+  <script>
+    let users = [
+      { username: "user1", password: "1234", voted: false },
+      { username: "user2", password: "abcd", voted: false },
+    ];
+
+    let votes = {
+      "Candidate A": 0,
+      "Candidate B": 0,
+      "Candidate C": 0
+    };
+
+    let currentUser = null;
+
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      const user = users.find(u => u.username === username && u.password === password);
+
+      if (user) {
+        if (user.voted) {
+          alert("You have already voted!");
+        } else {
+          currentUser = user;
+          document.getElementById("loginPage").classList.add("hidden");
+          document.getElementById("votingPage").classList.remove("hidden");
+        }
+      } else {
+        alert("Invalid username or password!");
+      }
+    }
+
+    function castVote() {
+      const candidate = document.getElementById("candidate").value;
+      if (candidate === "") {
+        alert("Please select a candidate before voting!");
+        return;
+      }
+
+      votes[candidate]++;
+      currentUser.voted = true;
+
+      document.getElementById("votingPage").classList.add("hidden");
+      document.getElementById("resultPage").classList.remove("hidden");
+
+      let resultText = "";
+      for (let c in votes) {
+        resultText += `${c}: ${votes[c]} votes<br>`;
+      }
+      document.getElementById("resultText").innerHTML = resultText;
+    }
+  </script>
+
+</body>
+</html>
