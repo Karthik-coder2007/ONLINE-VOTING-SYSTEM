@@ -1,0 +1,59 @@
+// ---------------------- Users & Votes ----------------------
+let users = [
+  {username:"user1", password:"1234", voted:false},
+  {username:"user2", password:"abcd", voted:false}
+];
+let votes = {"Candidate A":0, "Candidate B":0, "Candidate C":0};
+let currentUser = null;
+
+// ---------------------- Login Function ----------------------
+function login() {
+  let u = document.getElementById("username").value;
+  let p = document.getElementById("password").value;
+  let user = users.find(x => x.username===u && x.password===p);
+
+  if(user && !user.voted){
+    currentUser = user;
+    document.getElementById("loginPage").style.display="none";
+    document.getElementById("votingPage").style.display="block";
+    document.getElementById("userDisplay").innerText = currentUser.username;
+  } else {
+    alert("Invalid login or you have already voted!");
+  }
+}
+
+// ---------------------- Cast Vote Function ----------------------
+function castVote() {
+  let c = document.querySelector('input[name="candidate"]:checked');
+  if(!c){ alert("Please select a candidate"); return; }
+
+  votes[c.value]++;
+  currentUser.voted = true;
+  showResults();
+}
+
+// ---------------------- Show Results Function ----------------------
+function showResults() {
+  document.getElementById("votingPage").style.display="none";
+  document.getElementById("resultPage").style.display="block";
+
+  let total = 0;
+  for(let key in votes){ total += votes[key]; }
+
+  let resultHTML = "";
+  for(let key in votes){
+    let percent = total>0 ? ((votes[key]/total)*100).toFixed(1) : 0;
+    resultHTML += `${key}: ${votes[key]} votes (${percent}%)<br>`;
+  }
+  document.getElementById("resultText").innerHTML = resultHTML;
+}
+
+// ---------------------- Logout Function ----------------------
+function logout() {
+  currentUser = null;
+  document.getElementById("loginPage").style.display="block";
+  document.getElementById("resultPage").style.display="none";
+  document.getElementById("username").value = "";
+  document.getElementById("password").value = "";
+  document.querySelectorAll('input[name="candidate"]').forEach(r=>r.checked=false);
+}
